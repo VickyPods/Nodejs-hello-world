@@ -37,7 +37,7 @@ spec:
   ports:
   - name: web-servers-port
     port: 80
-    targetPort: 3000
+    targetPort: 8081
   selector:
     app: web-servers
   sessionAffinity: None
