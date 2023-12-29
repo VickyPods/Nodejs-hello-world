@@ -1,14 +1,19 @@
-const express = require('express');
-const app = express();
-const dotenv = require('dotenv');
-dotenv.config()    
-const port = process.env.PORT;
+// Importing http core package/module provided by nodejs
 
-app.get('/', (req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    const html = '<html><body><h1>Hello World App</h1></body></html>';
-    res.end(html);
-});
-app.listen(port, () => console.log(`Hello world app started & listening on port ${port}!`))
+var http = require('http');
 
-module.exports = app;
+// Creating a server
+
+http.createServer(function (req, res) {
+
+// Write response as Html(text)
+
+res.writeHead(200, {'Content-Type': 'text/html'});
+
+// Writing static text
+
+res.end('Hello From Vicky');
+
+// Server listening on port number 4200
+
+}).listen(4200);
