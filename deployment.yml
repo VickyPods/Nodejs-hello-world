@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-servers
+  labels:
+    app: web-servers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-servers
+  template:
+    metadata:
+      labels:
+        app: web-servers
+    spec:
+      containers:
+      - name: node-js
+        image: 047185742847.dkr.ecr.us-west-1.amazonaws.com/node-js:latest
+        ports: 
+        - containerPort: 8081
+        resources:
+          limits:
+            cpu: 100m
+          requests:
+            cpu: 50m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-servers
+  labels:
+    app: web-servers
+  namespace: default
+spec:
+  ports:
+  - name: web-servers-port
+    port: 80
+    targetPort: 3000
+  selector:
+    app: web-servers
+  sessionAffinity: None
+  type: NodePort
+
+
+
