@@ -18,7 +18,7 @@ spec:
       - name: node-js
         image: 047185742847.dkr.ecr.us-west-1.amazonaws.com/node-js:latest
         ports: 
-        - containerPort: 8081
+        - containerPort: 4200
         resources:
           limits:
             cpu: 100m
@@ -36,7 +36,7 @@ metadata:
 spec:
   ports:
   - name: web-servers-port
-    port: 8081
+    port: 4200
   selector:
     app: web-servers
   sessionAffinity: None
