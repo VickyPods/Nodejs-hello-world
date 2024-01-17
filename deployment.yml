@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node-js
-        image: 047185742847.dkr.ecr.us-west-1.amazonaws.com/node-js:latest
+        image: vicky2580/node-js:latest
         ports: 
         - containerPort: 4200
         resources:
