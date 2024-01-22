@@ -43,3 +43,23 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'kube-manifest'
         publishLocation: 'Container'
+
+    - task: KubernetesManifest@1
+      inputs:
+        action: 'createSecret'
+        connectionType: 'kubernetesServiceConnection'
+        kubernetesServiceConnection: 'manual-aks'
+        namespace: 'default'
+        secretType: 'dockerRegistry'
+        secretName: 'deafult-secret'
+        dockerRegistryEndpoint: 'acr-repo'
+    
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceEndpoint: 'manual-aks'
+        namespace: 'default'
+        command: 'apply'
+        useConfigurationFile: true
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
