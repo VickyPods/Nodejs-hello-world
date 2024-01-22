@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: node-js
-        image: vicky2580/node-js:latest
+        image: vickyp.azurecr.io/vickypodsnodejshelloworld:$(Build.BuildId)
         ports: 
-        - containerPort: 4200
+        - containerPort: 3000
         resources:
           limits:
             cpu: 100m
@@ -29,18 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-servers
-  labels:
-    app: web-servers
-  namespace: default
+  name: nodejs-app-service
 spec:
-  ports:
-  - name: web-servers-port
-    port: 4200
   selector:
-    app: web-servers
-  sessionAffinity: None
-  type: NodePort
-
-
+    app: nodejs-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
 
