@@ -53,13 +53,13 @@ stages:
         secretType: 'dockerRegistry'
         secretName: 'deafult-secret'
         dockerRegistryEndpoint: 'acr-repo'
-    
-    - task: Kubernetes@1
-      inputs:
-        connectionType: 'Kubernetes Service Connection'
-        kubernetesServiceEndpoint: 'manual-aks'
-        namespace: 'default'
-        command: 'apply'
-        useConfigurationFile: true
-        secretType: 'dockerRegistry'
-        containerRegistryType: 'Azure Container Registry'
+
+      - task: Kubernetes@1
+        inputs:
+          connectionType: 'Kubernetes Service Connection'
+          kubernetesServiceEndpoint: 'manual-aks'
+          namespace: 'default'
+          command: 'apply'
+          arguments: '-f $(Build.SourcesDirectory)/deployment.yml'
+          secretType: 'dockerRegistry'
+          containerRegistryType: 'Azure Container Registry'
