@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node-js
-        image: vickyp.azurecr.io/vickypodsnodejshelloworld:latest
+        image: vickyp.azurecr.io/vickypodsnodejshelloworld
         ports: 
         - containerPort: 3000
         resources:
