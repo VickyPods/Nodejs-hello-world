@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: vickypodsnodejshelloworld 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vickypodsnodejshelloworld
+  template:
+    metadata:
+      labels:
+        app: vickypodsnodejshelloworld 
+    spec:
+      containers:
+        - name: vickypodsnodejshelloworld 
+          image: vickyp.azurecr.io/vickypodsnodejshelloworld
+          ports:
+          - containerPort: 4200
